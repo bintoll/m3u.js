@@ -50,7 +50,6 @@ function formatHeaderParams(params) {
 
     return result;
 }
-}
 
 function parse(content){
     var result = {
