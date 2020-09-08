@@ -114,11 +114,10 @@ function format(m3u){
             +track.title
             +'\n'
             +track.file
-            +'\n'
-            +EXTENDLIST;
+            +'\n';
     });
 
-    return result;
+    return result += '\n' + EXTENDLIST;
 }
 
 module.exports.parse = parse;
