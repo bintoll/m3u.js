@@ -45,7 +45,7 @@ function formatParams(params){
 function formatHeaderParams(params) {
     var result = '';
     for(var key in params){
-        result += ' ' + key + ':' + params[key]+'\n';
+        result += '#' + key + ':' + params[key]+'\n';
     }
 
     return result;
