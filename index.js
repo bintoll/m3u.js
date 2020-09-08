@@ -4,6 +4,7 @@
 
 var EXTM3U = '#EXTM3U';
 var EXTINF = '#EXTINF:';
+var EXTENDLIST = '#EXT-X-ENDLIST';
 
 var REGEX_PARAMS = /\s*("([^"]+)"|([^=]+))=("([^"]+)"|(\S+))/g;
 var REGEX_DURATION = /\s*(-?\d+)/g;
@@ -39,6 +40,16 @@ function formatParams(params){
     }
 
     return result;
+}
+
+function formatHeaderParams(params) {
+    var result = '';
+    for(var key in params){
+        result += ' ' + key + ':' + params[key]+'\n';
+    }
+
+    return result;
+}
 }
 
 function parse(content){
@@ -93,7 +104,7 @@ function parse(content){
 function format(m3u){
     var result = EXTM3U;
     if (m3u.header){
-        result += formatParams(m3u.header);
+        result += '\n\n' + formatHeaderParams(m3u.header);
     }
     result+= '\n';
     m3u.tracks.forEach(function(track){
@@ -104,7 +115,8 @@ function format(m3u){
             +track.title
             +'\n'
             +track.file
-            +'\n';
+            +'\n'
+            +EXTENDLIST;
     });
 
     return result;
